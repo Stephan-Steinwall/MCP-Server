@@ -1,4 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from 'zod'
 
 const server = new McpServer({
@@ -45,3 +46,16 @@ server.resource(
         return `supported Cities: New York, London`
     }
 )
+
+async function init() {
+    const transport = new StdioServerTransport()
+    await server.connect(transport)
+    console.error('🌤️  Weather MCP Server Started!');
+    console.error('🛠️  Tool: getWeatherDataByCityName');
+    console.error('📚 Resource: weather://cities');
+    console.error('🏙️  Supported Cities: New York, London');
+    console.error('✅ Server ready!');
+
+}
+
+init().catch(console.error)

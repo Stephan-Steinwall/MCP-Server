@@ -34,3 +34,14 @@ async function getWeatherByCity(city: string) {
     }
     return { temp: null, error: 'Weather data not available for this city' };
 }
+
+
+server.resource(
+    'weather://citites',
+    'list of supported cities',
+    'text/plain',
+
+    async () => {
+        return `supported Cities: New York, London`
+    }
+)
